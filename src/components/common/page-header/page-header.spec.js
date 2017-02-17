@@ -13,7 +13,7 @@ describe('PageHeader', () => {
     expect(wrapper.find('h1').length).to.equal(1);
   });
 
-  it('contains a header with text Todos Manager', () => {
-    expect(wrapper.find('h1').text()).to.deep.equal('Todos Manager');
+  it('contains a header with text Sales Report', () => {
+    expect(wrapper.find('h1').text()).to.deep.equal('Sales Report');
   });
 });

@@ -5,7 +5,7 @@ export default class Header extends Component {
   render () {
     return (
       <div className={styles.header}>
-        <h1>Todos Manager</h1>
+        <h1>Sales Report</h1>
       </div>
     );
   }

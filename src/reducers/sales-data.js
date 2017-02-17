@@ -1,14 +1,13 @@
-import { ADD_TODO } from '../constants';
+import { ADD_SALES_DATA } from '../constants';
+export const initialData = [];
 
-export const initialTodos = [];
-
-export default function (state = initialTodos, action) {
+export default function (state = initialData, action) {
   if (!action || !action.type) return state;
   if (!action.payload) {
     return state;
   }
   switch (action.type) {
-    case ADD_TODO: {
+    case ADD_SALES_DATA: {
       if (Array.isArray(action.payload)) {
         return [...state, ...action.payload];
       }

@@ -1,3 +1,3 @@
-import todos from './todos';
+import salesData from './sales-data';
 
-export default { todos };
+export default { salesData };
