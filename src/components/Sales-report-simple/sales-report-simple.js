@@ -15,6 +15,15 @@ export class SalesReport extends React.Component {
 			groupBy: ['Gender'],
 			summaryBy: 'Size'
 		};
+		this.columns = [
+			'Month',
+			'DeliveryCountry',
+			'Manufacturer',
+			'Gender',
+			'Size',
+			'Colour',
+			'Style'
+		];
 	}
 
 	componentDidMount () {
@@ -101,6 +110,7 @@ export class SalesReport extends React.Component {
 	};
 
 	getColumns = () => {
+/*
 		const children = [];
 		if (this.props.salesData) {
 			const firstRow = this.props.salesData[0];
@@ -108,7 +118,12 @@ export class SalesReport extends React.Component {
 				children.push(<Option key={key}>{key}</Option>);
 			});
 		}
+
 		return children;
+*/
+		return this.columns.map((col) => {
+			return <Option key={col}>{col}</Option>
+		})
 	};
 
 	render () {

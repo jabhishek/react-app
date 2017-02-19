@@ -4,8 +4,8 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 const getDateSummaryKey = (rowData, col) => {
-	if (col === 'OrderDate') {
-		const month = rowData[col].split('/')[1];
+	if (col === 'Month') {
+		const month = rowData['OrderDate'].split('/')[1];
 		return `Month//${monthNames[month - 1]}`;
 	} else {
 		return `${col}//${rowData[col]}`;
