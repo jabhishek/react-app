@@ -12,7 +12,15 @@ describe('generate summary', () => {
 			{Size: '14', Colour: 'Red', Manufacturer: 'B', Count: 20}
 		];
 		expect(generateSummary(data, ['Size'], 'Manufacturer')).to.deep.equal(
-			{'Size//12.Manufacturer//A': 30, 'Size//14.Manufacturer//A': 10, 'Size//14.Manufacturer//B': 20}
+			{
+				'Size//12': [
+					{key: 'Manufacturer//A', count: 30}
+				],
+				'Size//14': [
+					{key: 'Manufacturer//A', count: 10},
+					{key: 'Manufacturer//B', count: 20}
+				]
+			}
 		);
 	});
 	it('should create the summary correctly', () => {
@@ -23,7 +31,18 @@ describe('generate summary', () => {
 			{Size: '14', Colour: 'Red', Manufacturer: 'B', Count: 20}
 		];
 		expect(generateSummary(data, ['Size', 'Colour'], 'Manufacturer')).to.deep.equal(
-			{'Size//12.Colour//Red.Manufacturer//A': 10, 'Size//12.Colour//Green.Manufacturer//A': 20, 'Size//14.Colour//Red.Manufacturer//A': 10, 'Size//14.Colour//Red.Manufacturer//B': 20}
+			{
+				'Size//12.Colour//Red': [
+					{key: 'Manufacturer//A', count: 10}
+				],
+				'Size//12.Colour//Green': [
+					{key: 'Manufacturer//A', count: 20}
+				],
+				'Size//14.Colour//Red': [
+					{key: 'Manufacturer//A', count: 10},
+					{key: 'Manufacturer//B', count: 20}
+				]
+			}
 		);
 	});
 });

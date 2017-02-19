@@ -1,5 +1,4 @@
-const data = require('./mock-data');
-const _ = require('lodash');
+const data = require('./mock-data.json');
 
 module.exports = function (app) {
 	app.get('/api/sales-data', (req, res) => {

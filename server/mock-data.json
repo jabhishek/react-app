@@ -1,0 +1,51 @@
+[
+	{
+		"OrderDate": "1/2/16",
+		"DeliveryCountry": "France",
+		"Manufacturer": "Denzil Jeans",
+		"Gender": "F",
+		"Size": "16",
+		"Colour": "Light Blue",
+		"Style": "Skinny",
+		"Count": 2731
+	},
+	{
+		"OrderDate": "1/1/16",
+		"DeliveryCountry": "France",
+		"Manufacturer": "Wrangled Jeans",
+		"Gender": "F",
+		"Size": "12",
+		"Colour": "Red",
+		"Style": "Boot Cut",
+		"Count": 1464
+	},
+	{
+		"OrderDate": "1/6/16",
+		"DeliveryCountry": "France",
+		"Manufacturer": "Wrangled Jeans",
+		"Gender": "F",
+		"Size": "16",
+		"Colour": "Light Blue",
+		"Style": "Relaxed",
+		"Count": 200
+	},
+	{
+		"OrderDate": "1/5/16",
+		"DeliveryCountry": "United Kingdom",
+		"Manufacturer": "Wrangled Jeans",
+		"Gender": "F",
+		"Size": "12",
+		"Colour": "Yellow",
+		"Style": "Boot Cut",
+		"Count": 243
+	},
+	{
+		"OrderDate": "1/5/16",
+		"DeliveryCountry": "Germany",
+		"Manufacturer": "Wrangled Jeans",
+		"Gender": "F",
+		"Size": "16",
+		"Colour": "Dark Blue",
+		"Style": "Skinny",
+		"Count": 576
+	}]
