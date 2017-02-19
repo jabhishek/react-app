@@ -10,8 +10,8 @@
 
 ### UI Frameworks/Libraries used
 1. React/Redux
-2. Material UI and AntD UI Components 
-3. Nodejs server for exposing the backend api
+2. Material UI and AntD UI Components. These were used to finish the app in a short time.
+3. Nodejs server for exposing the backend api. 
 4. Karma/Mocha/Chai/Enzyme for unit testing
 
 ### Providing data for the app
@@ -27,7 +27,6 @@ Currently, the app just lists the top selling value in that category. For exampl
 ### Todos
 1. More test coverage
 2. Using redux for storing the filters too. Redux is a bit of an overkill at the moment, but keeping it will help scale the app well in future.
-3. Some refactoring 
-4. Handle Grouping by Month better
-
+3. Handle Grouping by Month better
+4. Refactor webpack configs to reduce repetitive configs (DRY).
 
