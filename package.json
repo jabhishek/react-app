@@ -4,8 +4,9 @@
   "description": "React Redux starter",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start",
-    "build": "./node_modules/.bin/webpack",
+    "test": "karma start",
+    "build:prod": "export NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "build": "webpack",
     "server": "nodemon server/index.js",
     "start": "concurrent \"npm run build\" \"npm run server\"",
     "eslint:watch": "esw src/ server/ -w --color"

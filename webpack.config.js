@@ -35,14 +35,8 @@ module.exports = {
             filename: 'index.html'
         }),
         new ExtractTextPlugin('css/app.css'),
-		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				warnings: false,
-				screw_ie8: true
-			}
-		}),
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
+			'process.env.NODE_ENV': JSON.stringify('development')
 		})
     ],
     watch: true
