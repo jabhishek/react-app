@@ -1,4 +1,4 @@
-const data = require('./mock-data.json');
+const data = require('./mock-data-generator');
 
 module.exports = function (app) {
 	app.get('/api/sales-data', (req, res) => {

@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {fetchSalesData} from '../../actionCreators/salesDataActions';
 import {connect} from 'react-redux';
 import {generateSummary} from '../../common/utils';
-import {forOwn, keys, values, sortBy, chain, orderBy} from 'lodash';
+import {forOwn, keys, values, sortBy, orderBy} from 'lodash';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 export class SalesReport extends React.Component {
-	constructor(props) {
+	constructor (props) {
 		super(props);
 		this.state = {
-			groupBy: ['Gender', 'DeliveryCountry'],
-			summaryBy: 'Manufacturer'
-		}
+			groupBy: ['DeliveryCountry', 'Gender'],
+			summaryBy: 'Size'
+		};
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		const {fetchSalesData, salesData} = this.props;
 		if (!salesData || !salesData.length) {
 			fetchSalesData();
@@ -23,15 +23,15 @@ export class SalesReport extends React.Component {
 
 	getTableHeaderColumns = (row) => {
 		return keys(row).map(i => {
-			return <TableHeaderColumn>{ i }</TableHeaderColumn>
-		})
-	}
+			return <TableHeaderColumn>{ i }</TableHeaderColumn>;
+		});
+	};
 
 	getTableRow = (row) => {
 		return values(row).map(i => {
-			return <TableRowColumn>{ i }</TableRowColumn>
-		})
-	}
+			return <TableRowColumn>{ i }</TableRowColumn>;
+		});
+	};
 
 	getTableRows = (arr) => {
 		return arr.map(row => {
@@ -39,18 +39,18 @@ export class SalesReport extends React.Component {
 				<TableRow>
 					{ this.getTableRow(row) }
 				</TableRow>);
-		})
-	}
+		});
+	};
 
 	createTable = (arr) => {
 		return (
 			<Table>
-				<TableHeader>
+				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 					<TableRow>
 						{ this.getTableHeaderColumns(arr[0]) }
 					</TableRow>
 				</TableHeader>
-				<TableBody>
+				<TableBody displayRowCheckbox={ false }>
 					{ this.getTableRows(arr)}
 				</TableBody>
 			</Table>);
@@ -68,7 +68,7 @@ export class SalesReport extends React.Component {
 		const summary = generateSummary(this.props.salesData,
 			this.state.groupBy, this.state.summaryBy);
 
-		const arr = []
+		const arr = [];
 		forOwn(summary, (value, key) => {
 			const obj = {};
 			const keys = key.split('.');
@@ -85,7 +85,7 @@ export class SalesReport extends React.Component {
 		);
 	};
 
-	render() {
+	render () {
 		console.log(this.props);
 
 		const summary = this.getSummary();
@@ -97,6 +97,10 @@ export class SalesReport extends React.Component {
 		);
 	}
 }
+SalesReport.propTypes = {
+	fetchSalesData: PropTypes.func,
+	salesData: PropTypes.array
+};
 const mapDispatchToProps = {fetchSalesData};
 const mapStateToProps = ({salesData}) => ({salesData});
 export default connect(mapStateToProps, mapDispatchToProps)(SalesReport);

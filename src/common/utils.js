@@ -11,12 +11,12 @@ export const generateSummary = (data, groupColumns, summaryColumn) => {
 			return result + `.${columnPath}`;
 		}, '');
 		const currentObj = result[propName];
-		const summaryKey = `${summaryColumn}//${value[summaryColumn]}`
+		const summaryKey = `${summaryColumn}//${value[summaryColumn]}`;
 		if (!currentObj) {
 			result[propName] = [{
 				key: summaryKey,
 				count: value.Count
-			}]
+			}];
 		} else {
 			const summaryPropInCurrentObj = currentObj.find(i => i.key === summaryKey);
 			if (summaryPropInCurrentObj) {
