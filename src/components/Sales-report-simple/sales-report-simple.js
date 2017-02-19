@@ -12,7 +12,7 @@ export class SalesReport extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			groupBy: [],
+			groupBy: ['Gender'],
 			summaryBy: 'Size'
 		};
 	}
@@ -102,10 +102,12 @@ export class SalesReport extends React.Component {
 
 	getColumns = () => {
 		const children = [];
-		const firstRow = this.props.salesData[0];
-		forOwn(firstRow, (value, key) => {
-			children.push(<Option key={key}>{key}</Option>);
-		});
+		if (this.props.salesData) {
+			const firstRow = this.props.salesData[0];
+			forOwn(firstRow, (value, key) => {
+				children.push(<Option key={key}>{key}</Option>);
+			});
+		}
 		return children;
 	};
 
@@ -119,17 +121,19 @@ export class SalesReport extends React.Component {
 		return (
 			<div style={ {padding: '20px'} }>
 				<Paper style={ {padding: '10px', marginBottom: '10px'} }>
+					<div>Group by:</div>
 					<Select
 						multiple
-						style={{ width: '50%', margin: '10px' }}
+						style={{ width: '50%', marginBottom: '10px' }}
 						placeholder="Please select grouping columns"
 						value={ this.state.groupBy }
 						onChange={this.handleGroupByChange}
 					>
 						{columns}
 					</Select>
+					<div>Top Selling:</div>
 					<Select
-						style={{ width: '50%', margin: '10px' }}
+						style={{ width: '50%', marginBottom: '10px' }}
 						placeholder="Please select top selling category"
 						value={ this.state.summaryBy }
 						onChange={this.handleSummaryByChange}

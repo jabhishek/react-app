@@ -11,6 +11,6 @@ describe('SalesReport', () => {
   });
 
   it('should exist', () => {
-    expect(wrapper.prop('children')).to.equal('Sales Report');
+    expect(wrapper).to.exist;
   });
 });

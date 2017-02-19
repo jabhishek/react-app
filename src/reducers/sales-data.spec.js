@@ -15,10 +15,10 @@ describe('sales data reducer', () => {
 
   describe('Add sales data', () => {
     it('should add sales data', () => {
-      const salesData = { _id: 2, todo: 'TEST2' };
-      expect(salesDataReducer([], { type: ADD_SALES_DATA, payload: salesData })).to.deep.equal([salesData]);
+      const salesData = [{ _id: 2, todo: 'TEST2' }];
+      expect(salesDataReducer([], { type: ADD_SALES_DATA, payload: salesData })).to.deep.equal(salesData);
       expect(salesDataReducer(initialData, { type: ADD_SALES_DATA, payload: salesData }))
-          .to.deep.equal([...initialData, salesData]);
+          .to.deep.equal(salesData);
     });
   });
 });
