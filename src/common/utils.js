@@ -1,13 +1,15 @@
 import { reduce } from 'lodash';
+const monthNames = ["January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December"
+];
 
 const getDateSummaryKey = (rowData, col) => {
 	if (col === 'OrderDate') {
 		const month = rowData[col].split('/')[1];
-		return `month//${month}`;
+		return `Month//${monthNames[month - 1]}`;
 	} else {
 		return `${col}//${rowData[col]}`;
 	}
-
 };
 
 export const generateSummary = (data, groupColumns, summaryColumn) => {
