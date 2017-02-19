@@ -18,10 +18,14 @@ const logger = createLogger({
   collapsed: true
 });
 
-const middleware = applyMiddleware(
-	logger, thunk,
-	routerMiddleware(browserHistory)
-);
+const middleWares = [thunk,
+	routerMiddleware(browserHistory)];
+
+if (process.env.NODE_ENV !== 'production') {
+	middleWares.push(logger);
+}
+
+const middleware = applyMiddleware(...middleWares);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
