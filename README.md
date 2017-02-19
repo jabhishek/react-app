@@ -22,3 +22,4 @@ Currently, the app just lists the top selling value in that category. For exampl
 1. More test coverage
 2. Using redux for storing the filters too. Redux is a bit of an overkill at the moment, but keeping it will help scale the app well in future.
 3. Some refactoring 
+4. Handle Grouping by Month better

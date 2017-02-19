@@ -110,17 +110,6 @@ export class SalesReport extends React.Component {
 	};
 
 	getColumns = () => {
-/*
-		const children = [];
-		if (this.props.salesData) {
-			const firstRow = this.props.salesData[0];
-			forOwn(firstRow, (value, key) => {
-				children.push(<Option key={key}>{key}</Option>);
-			});
-		}
-
-		return children;
-*/
 		return this.columns.map((col) => {
 			return <Option key={col}>{col}</Option>
 		})
