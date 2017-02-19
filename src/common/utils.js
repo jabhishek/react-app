@@ -1,30 +1,42 @@
 import { reduce } from 'lodash';
 
+const getDateSummaryKey = (rowData, col) => {
+	if (col === 'OrderDate') {
+		const month = rowData[col].split('/')[1];
+		return `month//${month}`;
+	} else {
+		return `${col}//${rowData[col]}`;
+	}
+
+};
+
 export const generateSummary = (data, groupColumns, summaryColumn) => {
 	const columns = [...groupColumns];
-	const summary = reduce(data, (result, value) => {
-		const propName = reduce(columns, (result, col, index) => {
-			const columnPath = `${col}//${value[col]}`;
+	const summary = reduce(data, (result, rowData) => {
+		const groupPropName = reduce(columns, (result, col, index) => {
+			let columnPath = getDateSummaryKey(rowData, col);
 			if (index === 0) {
 				return `${columnPath}`;
 			}
 			return result + `.${columnPath}`;
 		}, '');
-		const currentObj = result[propName];
-		const summaryKey = `${summaryColumn}//${value[summaryColumn]}`;
+		const currentObj = result[groupPropName];
+		// const summaryKey = `${summaryColumn}//${rowData[summaryColumn]}`;
+		let summaryKey = getDateSummaryKey(rowData, summaryColumn);
+
 		if (!currentObj) {
-			result[propName] = [{
+			result[groupPropName] = [{
 				key: summaryKey,
-				count: value.Count
+				count: rowData.Count
 			}];
 		} else {
 			const summaryPropInCurrentObj = currentObj.find(i => i.key === summaryKey);
 			if (summaryPropInCurrentObj) {
-				summaryPropInCurrentObj.count = summaryPropInCurrentObj.count + value.Count;
+				summaryPropInCurrentObj.count = summaryPropInCurrentObj.count + rowData.Count;
 			} else {
 				currentObj.push({
 					key: summaryKey,
-					count: value.Count
+					count: rowData.Count
 				});
 			}
 		}

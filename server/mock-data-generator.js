@@ -10,7 +10,7 @@ const getRandomItem = items => items[ Math.floor(Math.random() * items.length) ]
 const getRandomMonth = () => Math.ceil(Math.random() * 12);
 
 const getData = () => {
-	return Array.from({ length: 200000 }, () => {
+	return Array.from({ length: 20000 }, () => {
 		return {
 			OrderDate: `1/${getRandomMonth()}/16`,
 			DeliveryCountry: getRandomItem(countries),

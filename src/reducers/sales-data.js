@@ -9,9 +9,9 @@ export default function (state = initialData, action) {
   switch (action.type) {
     case ADD_SALES_DATA: {
       if (Array.isArray(action.payload)) {
-        return [...state, ...action.payload];
+        return action.payload;
       }
-      return [...state, action.payload];
+      return state;
     }
     default:
       return state;
