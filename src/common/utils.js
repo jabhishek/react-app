@@ -44,6 +44,5 @@ export const generateSummary = (data, groupColumns, summaryColumn) => {
 		}
 		return result;
 	}, {});
-	console.log(summary);
 	return summary;
 };
