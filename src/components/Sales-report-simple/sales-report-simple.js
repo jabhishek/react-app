@@ -5,14 +5,14 @@ import {generateSummary} from '../../common/utils';
 import {forOwn, keys, values, sortBy, orderBy} from 'lodash';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import { Select } from 'antd';
+import Select from 'antd/lib/select';
 const Option = Select.Option;
 
 export class SalesReport extends React.Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			groupBy: ['DeliveryCountry', 'Gender'],
+			groupBy: [],
 			summaryBy: 'Size'
 		};
 	}
@@ -25,14 +25,14 @@ export class SalesReport extends React.Component {
 	}
 
 	getTableHeaderColumns = (row) => {
-		return keys(row).map(i => {
-			return <TableHeaderColumn key={i}>{ i }</TableHeaderColumn>;
+		return keys(row).map((val, i) => {
+			return <TableHeaderColumn key={i}>{ val }</TableHeaderColumn>;
 		});
 	};
 
 	getTableRow = (row) => {
-		return values(row).map(i => {
-			return <TableRowColumn key={i}>{ i }</TableRowColumn>;
+		return values(row).map((val, i) => {
+			return <TableRowColumn key={i}>{ val }</TableRowColumn>;
 		});
 	};
 
@@ -121,16 +121,16 @@ export class SalesReport extends React.Component {
 				<Paper style={ {padding: '10px', marginBottom: '10px'} }>
 					<Select
 						multiple
-						style={{ width: '100%', margin: '10px' }}
-						placeholder="Please select"
+						style={{ width: '50%', margin: '10px' }}
+						placeholder="Please select grouping columns"
 						value={ this.state.groupBy }
 						onChange={this.handleGroupByChange}
 					>
 						{columns}
 					</Select>
 					<Select
-						style={{ width: '100%', margin: '10px' }}
-						placeholder="Please select"
+						style={{ width: '50%', margin: '10px' }}
+						placeholder="Please select top selling category"
 						value={ this.state.summaryBy }
 						onChange={this.handleSummaryByChange}
 					>
