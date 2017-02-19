@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {generateSummary} from '../../common/utils';
 import {forOwn, keys, values, sortBy, orderBy} from 'lodash';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Paper from 'material-ui/Paper';
+import { Select } from 'antd';
+const Option = Select.Option;
 
 export class SalesReport extends React.Component {
 	constructor (props) {
@@ -23,20 +26,20 @@ export class SalesReport extends React.Component {
 
 	getTableHeaderColumns = (row) => {
 		return keys(row).map(i => {
-			return <TableHeaderColumn>{ i }</TableHeaderColumn>;
+			return <TableHeaderColumn key={i}>{ i }</TableHeaderColumn>;
 		});
 	};
 
 	getTableRow = (row) => {
 		return values(row).map(i => {
-			return <TableRowColumn>{ i }</TableRowColumn>;
+			return <TableRowColumn key={i}>{ i }</TableRowColumn>;
 		});
 	};
 
 	getTableRows = (arr) => {
-		return arr.map(row => {
+		return arr.map((row, i) => {
 			return (
-				<TableRow>
+				<TableRow key={i}>
 					{ this.getTableRow(row) }
 				</TableRow>);
 		});
@@ -60,7 +63,7 @@ export class SalesReport extends React.Component {
 		const maxField = orderBy(summaryFieldValues, ['count'], ['desc'])[0];
 		const summaryFieldKey = maxField.key;
 		const keySplit = summaryFieldKey.split('//');
-		obj[keySplit[0]] = keySplit[1];
+		obj[`Top Selling ${keySplit[0]}`] = keySplit[1];
 		obj.Count = maxField.count;
 	};
 
@@ -85,13 +88,55 @@ export class SalesReport extends React.Component {
 		);
 	};
 
+	handleGroupByChange = (value) => {
+		this.setState({
+			groupBy: value
+		});
+	};
+
+	handleSummaryByChange = (value) => {
+		this.setState({
+			summaryBy: value
+		});
+	};
+
+	getColumns = () => {
+		const children = [];
+		const firstRow = this.props.salesData[0];
+		forOwn(firstRow, (value, key) => {
+			children.push(<Option key={key}>{key}</Option>);
+		});
+		return children;
+	};
+
 	render () {
 		console.log(this.props);
 
 		const summary = this.getSummary();
 
+		const columns = this.getColumns();
+
 		return (
 			<div style={ {padding: '20px'} }>
+				<Paper style={ {padding: '10px', marginBottom: '10px'} }>
+					<Select
+						multiple
+						style={{ width: '100%', margin: '10px' }}
+						placeholder="Please select"
+						value={ this.state.groupBy }
+						onChange={this.handleGroupByChange}
+					>
+						{columns}
+					</Select>
+					<Select
+						style={{ width: '100%', margin: '10px' }}
+						placeholder="Please select"
+						value={ this.state.summaryBy }
+						onChange={this.handleSummaryByChange}
+					>
+						{columns}
+					</Select>
+				</Paper>
 				{ summary }
 			</div>
 		);

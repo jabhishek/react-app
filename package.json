@@ -65,6 +65,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "antd": "2.7.2",
     "assert": "^1.4.1",
     "body-parser": "^1.15.2",
     "classnames": "^2.2.5",
