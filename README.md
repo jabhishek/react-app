@@ -10,7 +10,7 @@
 
 ### UI Frameworks/Libraries used
 1. React/Redux
-2. Material UI and AntD UI Components. These were used to finish the app in a short time.
+2. Material UI and AntD UI Components.
 3. Nodejs server for exposing the backend api. 
 4. Karma/Mocha/Chai/Enzyme for unit testing
 
